@@ -905,7 +905,7 @@ async def commands(ctx):
     embed.set_image(url='https://cdn.discordapp.com/attachments/828339543514021902/830516904183070730/Bot_pfp_2.jpg')
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
     embed.add_field(name = "Moderation", value = "kick_server,ban,unban,    delete")
-    embed.add_field(name = "Fun", value = "ping,toss,roll,   insult,hi,    scream,spam,  joke,tell, td")
+    embed.add_field(name = "Fun", value = "ping,toss,roll,   insult,hi,    scream,joke,  tell,td")
     embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,temp,    define")
     embed.add_field(name = "Actions", value = "hug,kick,punch,pat,stab,kidnap,slap,rr", inline=True)
     embed.add_field(name = "Valorant", value = "loadout, agent,(agnet)_info", inline=True)
