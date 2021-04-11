@@ -915,7 +915,7 @@ async def commands(ctx):
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
     embed.add_field(name = "General", value = "timer,report,dm,dm_all")
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi How are you same for tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is .add 2 5\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)")
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi How are you same for tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is .add 2 5\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
 
     await ctx.send(embed=embed)
 
