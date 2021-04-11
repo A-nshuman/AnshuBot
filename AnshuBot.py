@@ -721,7 +721,7 @@ async def about(ctx):
     embed.add_field(name = "Name", value = "Anshuman Bhardwaj", inline=False)
     embed.add_field(name = "Discord", value = "MrAnshuman #1060", inline=False)
     embed.add_field(name = "Gmail", value = "abtbbruv@gmail.com", inline=False)
-    embed.add_field(name = "Bot Server", value = "Will be revealed soon", inline=False)
+    embed.add_field(name = "Bot Server", value = "https://discord.gg/TtByRnt82F", inline=False)
 
     await ctx.send(embed=embed)
 
@@ -736,7 +736,7 @@ async def info(ctx):
     embed.add_field(name = "Name", value = "Anshuman's Bot", inline=False)
     embed.add_field(name = "Prefix", value = ".", inline=False)
     embed.add_field(name = "Created at", value = "Mon, 05 April 2021", inline=False)
-    embed.add_field(name = "Bot Server", value = "Will be revealed soon", inline=False)
+    embed.add_field(name = "Bot Server", value = "https://discord.gg/TtByRnt82F", inline=False)
 
     await ctx.send(embed=embed)
 
