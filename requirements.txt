@@ -1,0 +1,4 @@
+discord==1.0.1
+wikipedia==1.4.0
+pyjokes==0.6.0
+asyncio==3.4.3
