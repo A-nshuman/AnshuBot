@@ -359,7 +359,7 @@ async def rando(ctx):
 async def temp(ctx):
     embed = discord.Embed(title = "Temperature(in °C)", description = (random.randint(18, 30)), color = (0xF85252))
     embed.set_thumbnail(url='https://i.pinimg.com/originals/06/c4/f7/06c4f70ec5931e2342e703e8a3f0a253.png')
-    embed.set_footer(text='(sacm)')
+    embed.set_footer(text='(fake)')
     await ctx.send(embed = embed)
 
 @client.command()
@@ -915,7 +915,7 @@ async def commands(ctx):
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
     embed.add_field(name = "General", value = "timer,report,dm,dm_all")
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi How are you same for tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is .add 2 5\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
 
     await ctx.send(embed=embed)
 
