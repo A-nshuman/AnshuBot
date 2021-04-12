@@ -940,4 +940,4 @@ async def commands(ctx):
 
     await ctx.send(embed=embed)
 
-client.run('ODI4NDk2ODg1NjQ3OTMzNDcx.YGqb2g.b0Xq_09ik4AQLOgxNuUm0kOf034')
+client.run('ODI4NDk2ODg1NjQ3OTMzNDcx.YGqb2g.SFYkLd47BgUvUATVSaNyYZq7lzw')
