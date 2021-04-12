@@ -287,7 +287,8 @@ async def slap(ctx, *, member: discord.Member):
             'https://media.giphy.com/media/9U5J7JpaYBr68/giphy.gif',
             'https://media.giphy.com/media/VTVkjiRwO4LgA/giphy.gif',
             'https://media.giphy.com/media/srD8JByP9u3zW/giphy.gif',
-            'https://media.giphy.com/media/Zau0yrl17uzdK/giphy.gif']
+            'https://media.giphy.com/media/Zau0yrl17uzdK/giphy.gif',
+            'https://media.giphy.com/media/mEtSQlxqBtWWA/giphy.gif']
 
     embed = discord.Embed(description = f'{ctx.author.mention} Slapped {member.mention}', colour=discord.Colour.blue(), timestamp=ctx.message.created_at, inline=False)
     embed.set_image(url=f"{random.choice(slap)}")
