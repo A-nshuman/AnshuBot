@@ -251,8 +251,8 @@ async def hug(ctx, *, member: discord.Member):
             'https://media.giphy.com/media/1UGLHdH4aXaCs/giphy.gif',
             'https://media.giphy.com/media/yidUzriaAGJbsxt58k/giphy.gif']
 
-    embed = discord.Embed(description = f'{ctx.author.mention} Hugged {member.mention}', colour=discord.Colour.blue(), timestamp=ctx.message.created_at)
-    embed.set_image(url=f"{ranodm.choice(hug)}")
+    embed = discord.Embed(description = f'{ctx.author.mention} Hugged {member.mention}', colour=discord.Colour.blue(), timestamp=ctx.message.created_at, inline=False)
+    embed.set_image(url=f"{random.choice(hug)}")
 
     await ctx.send(embed=embed)
 
