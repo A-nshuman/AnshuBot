@@ -14,6 +14,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 client = commands.Bot(command_prefix = '.', intents=intents)
+client.sniped_message = {}
 
 @client.event
 async def on_ready():
@@ -27,6 +28,25 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     print(f'{member} has left the server.')
+    
+@client.event
+async def on_message_delete(message):
+    client.sniped_message[message.guild.id] = (message.content, message.author, message.channel.name, message.created_at)
+
+@client.command()
+async def snipe(ctx):
+    try:
+        contents, author, channel_name, time =  client.sniped_message[ctx.guild.id]
+
+    except:
+        await ctx.channel.send("Couldn't find a message to snipe")
+        return
+
+    embed = discord.Embed(description = contents, colour = discord.Colour.random(), timestmp = time)
+    embed.set_author(name = f"{author.name}#{author.discriminator}", icon_url = author.avatar_url)
+    embed.set_footer(text = f"Deleted in : #{channel_name}")
+
+    await ctx.send(embed=embed)
 
 @client.command()
 async def ping(ctx):
