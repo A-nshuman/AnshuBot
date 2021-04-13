@@ -8,6 +8,7 @@ import wikipedia
 import asyncio
 from discord import Member
 import pyjokes
+import aiohttp
 
 intents = discord.Intents.default()
 
@@ -28,7 +29,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     print(f'{member} has left the server.')
-    
+
 @client.event
 async def on_message_delete(message):
     client.sniped_message[message.guild.id] = (message.content, message.author, message.channel.name, message.created_at)
@@ -243,32 +244,25 @@ async def kick(ctx, *, member: discord.Member):
 
 @client.command()
 async def hug(ctx, *, member: discord.Member):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/animu/hug')
+      hugjson = await request.json()
 
-    hug = ['https://media.giphy.com/media/yziFo5qYAOgY8/giphy.gif',
-            'https://media.giphy.com/media/lrr9rHuoJOE0w/giphy.gif',
-            'https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif',
-            'https://media.giphy.com/media/143v0Z4767T15e/giphy.gif',
-            'https://media.giphy.com/media/1UGLHdH4aXaCs/giphy.gif',
-            'https://media.giphy.com/media/yidUzriaAGJbsxt58k/giphy.gif']
+   embed = discord.Embed(description = f"{ctx.author.mention} Hugged {member.mention}", color=discord.Color.random())
+   embed.set_image(url=hugjson['link'])
 
-    embed = discord.Embed(description = f'{ctx.author.mention} Hugged {member.mention}', colour=discord.Colour.blue(), timestamp=ctx.message.created_at, inline=False)
-    embed.set_image(url=f"{random.choice(hug)}")
-
-    await ctx.send(embed=embed)
+   await ctx.send(embed=embed)
 
 @client.command()
 async def pat(ctx, *, member: discord.Member):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/animu/pat')
+      patjson = await request.json()
 
-    pat = ['https://media.giphy.com/media/5tmRHwTlHAA9WkVxTU/giphy.gif',
-            'https://media.giphy.com/media/xUA7bahIfcCqC7S4qA/giphy.gif',
-            'https://media.giphy.com/media/ARSp9T7wwxNcs/giphy.gif',
-            'https://media.giphy.com/media/L2z7dnOduqEow/giphy.gif',
-            'https://media.giphy.com/media/N0CIxcyPLputW/giphy.gif']
-    
-    embed = discord.Embed(description = f'{ctx.author.mention} Patted {member.mention}', colour=discord.Colour.blue(), timestamp=ctx.message.created_at, inline=False)
-    embed.set_image(url=f"{random.choice(pat)}")
+   embed = discord.Embed(description = f"{ctx.author.mention} Patted {member.mention}", color=discord.Color.random())
+   embed.set_image(url=patjson['link'])
 
-    await ctx.send(embed=embed)
+   await ctx.send(embed=embed)
 
 @client.command()
 async def stab(ctx, *, member: discord.Member):
@@ -823,7 +817,7 @@ async def timer(ctx, seconds):
 
             await message.edit(content=f"Timer: {secondint}")
             await asyncio.sleep(1)
-        await ctx.send(f"{ctx.author.mention}, Your countdown has ended!")
+        await ctx.send(f"{ctx.author.mention}, Your timer has ended!")
     except ValueError:
         await ctx.send("You must enter a number!")
 
@@ -939,6 +933,90 @@ async def reminder(ctx, seconds, *, reason):
         await ctx.send(f"{ctx.author.mention}, ***REMINDER!***    **{reason}**")
     except ValueError:
         await ctx.send("You must enter a number!")
+
+@client.command()
+async def dog(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/dog')
+      dogjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/dog')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Dog", color=discord.Color.random())
+   embed.set_image(url=dogjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def cat(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/cat')
+      catjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/cat')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Cat!", color=discord.Color.random())
+   embed.set_image(url=catjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def panda(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/panda')
+      pandajson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/panda')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Panda", color=discord.Color.random())
+   embed.set_image(url=pandajson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def fox(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/fox')
+      foxjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/fox')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Fox", color=discord.Color.random())
+   embed.set_image(url=foxjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def bird(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/bird')
+      birdjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/bird')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Bird", color=discord.Color.random())
+   embed.set_image(url=birdjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def koala(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/koala')
+      koalajson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/koala')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Koala", color=discord.Color.random())
+   embed.set_image(url=koalajson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
 
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
