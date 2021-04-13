@@ -942,6 +942,21 @@ async def reminder(ctx, seconds, *, reason):
         await ctx.send(f"{ctx.author.mention}, ***REMINDER!***    **{reason}**")
     except ValueError:
         await ctx.send("You must enter a number!")
+        
+@client.command()
+async def fox(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/fox')
+      foxjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/fox')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Fox", color=discord.Color.random())
+   embed.set_image(url=foxjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   
+   await ctx.send(embed=embed)
 
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
