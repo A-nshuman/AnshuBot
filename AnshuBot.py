@@ -6,7 +6,7 @@ from math import *
 import random
 import wikipedia
 import asyncio
-from discord import Members
+from discord import Member
 import pyjokes
 import aiohttp
 
