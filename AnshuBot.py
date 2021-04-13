@@ -914,6 +914,32 @@ async def ref_index(ctx):
     
     await ctx.send(embed=embed)
 
+@client.command()
+async def reminder(ctx, seconds, *, reason):
+    try:
+        secondint = int(seconds)
+        if secondint >= 3600:
+            await ctx.send("I cant set a timer for more than 1 hour")
+            raise BaseException
+        
+        if secondint <= 0:
+            await ctx.send("I cant set a timer less than 0 seconds")
+            raise BaseException
+
+        message = await ctx.send(f"Timer: {seconds}")
+
+        while True:
+            secondint -= 1
+            if secondint == 0:
+                await message.edit(content="Ended")
+                break
+
+            await message.edit(content=f"Timer: {secondint}")
+            await asyncio.sleep(1)
+        await ctx.send(f"{ctx.author.mention}, ***REMINDER!***    **{reason}**")
+    except ValueError:
+        await ctx.send("You must enter a number!")
+
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
     embed = discord.Embed(
@@ -934,9 +960,9 @@ async def commands(ctx):
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
-    embed.add_field(name = "General", value = "timer,report,dm,dm_all,snipe")
+    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe")
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
 
     await ctx.send(embed=embed)
 
