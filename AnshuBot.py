@@ -958,6 +958,76 @@ async def fox(ctx):
    
    await ctx.send(embed=embed)
 
+@client.command()
+async def bird(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/bird')
+      birdjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/bird')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Bird", color=discord.Color.random())
+   embed.set_image(url=birdjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def koala(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/koala')
+      koalajson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/koala')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Koala", color=discord.Color.random())
+   embed.set_image(url=koalajson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def dog(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/dog')
+      dogjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/dog')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Dog", color=discord.Color.random())
+   embed.set_image(url=dogjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def cat(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/cat')
+      catjson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/cat')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Cat!", color=discord.Color.random())
+   embed.set_image(url=catjson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
+@client.command()
+async def panda(ctx):
+   async with aiohttp.ClientSession() as session:
+      request = await session.get('https://some-random-api.ml/img/panda')
+      pandajson = await request.json()
+      
+      request2 = await session.get('https://some-random-api.ml/facts/panda')
+      factjson = await request2.json()
+
+   embed = discord.Embed(title="Panda", color=discord.Color.random())
+   embed.set_image(url=pandajson['link'])
+   embed.set_footer(text=factjson['fact'])
+   await ctx.send(embed=embed)
+
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
     embed = discord.Embed(
@@ -979,6 +1049,7 @@ async def commands(ctx):
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
     embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe")
+    embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala")
 
     embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)", inline=False)
 
