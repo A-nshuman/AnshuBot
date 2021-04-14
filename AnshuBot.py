@@ -1050,7 +1050,7 @@ class MemberRoles(commands.MemberConverter):
 @client.command()
 async def roles(ctx, *, member: MemberRoles):
     """Tells you a member's roles."""
-    await ctx.send(f'{member.mention} has the following roles: ' + ', '.join(member))
+    await ctx.send('I see the following roles: ' + ', '.join(member))
 
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
