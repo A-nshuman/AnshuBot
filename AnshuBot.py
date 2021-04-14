@@ -1042,6 +1042,16 @@ def to_lower(argument):
 async def low(ctx, *, content: to_lower):
     await ctx.send(content)
 
+class MemberRoles(commands.MemberConverter):
+    async def convert(self, ctx, argument):
+        member = await super().convert(ctx, argument)
+        return [role.name for role in member.roles[1:]]
+
+@client.command()
+async def roles(ctx, *, member: MemberRoles):
+    """Tells you a member's roles."""
+    await ctx.send(f'{member.mention} has the following roles: ' + ', '.join(member))
+
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
     embed = discord.Embed(
@@ -1062,10 +1072,10 @@ async def commands(ctx):
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
-    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low")
+    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles")
     embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)", inline=False)
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)", inline=False)
 
     await ctx.send(embed=embed)
 
