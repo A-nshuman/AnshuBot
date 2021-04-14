@@ -9,6 +9,7 @@ import asyncio
 from discord import Member
 import pyjokes
 import aiohttp
+from discord.utils import get
 
 intents = discord.Intents.default()
 
