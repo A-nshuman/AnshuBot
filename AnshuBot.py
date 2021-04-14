@@ -19,7 +19,7 @@ client.sniped_message = {}
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game('with MrAnshuman#1060'))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=".cmd"))
     print('Bot is ready.')
 
 @client.event
