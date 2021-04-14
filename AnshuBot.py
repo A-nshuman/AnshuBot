@@ -830,17 +830,30 @@ async def timer(ctx, seconds):
     except ValueError:
         await ctx.send("You must enter a number!")
 
-@client.command()
+@client.command(pass_context=True, aliases=['j'])
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
+    channel = ctx.message.author.voice.channel
+    voice = get(client.voice_clients, guild=ctx.guild)
+
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+
     await ctx.send(f"Joined {channel}")
 
-@client.command()
+@client.command(pass_context=True, aliases=['l'])
 async def leave(ctx):
-    channel = ctx.author.voice.channel
-    await ctx.voice_client.disconnect()
-    await ctx.send(f"Left {channel}")
+    channel = ctx.message.author.voice.channel
+    voice = get(client.voice_clients, guild=ctx.guild)
+
+    if voice and voice.is_connected():
+        await voice.disconnect()
+        print(f"The bot has left {channel}")
+        await ctx.send(f"Left {channel}")
+    else:
+        print("Bot was told to leave voice channel, but was not in one")
+        await ctx.send("Don't think I am in a voice channel")
 
 @client.command()
 async def wallpaper(ctx):
