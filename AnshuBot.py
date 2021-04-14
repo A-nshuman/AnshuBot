@@ -1052,6 +1052,16 @@ async def roles(ctx, *, member: MemberRoles):
     """Tells you a member's roles."""
     await ctx.send('I see the following roles: ' + ', '.join(member))
 
+@client.command()
+async def meme(ctx):
+    embed = discord.Embed(title="Meme", colour = discord.Colour.random(), timestamp = ctx.message.created_at)
+
+    async with aiohttp.ClientSession() as cs:
+        async with cs.get('https://www.reddit.com/r/dankmemes/new.json?sort=hot') as r:
+            res = await r.json()
+            embed.set_image(url=res['data']['children'] [random.randint(0, 25)]['data']['url'])
+            await ctx.send(embed=embed)
+
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
     embed = discord.Embed(
@@ -1072,7 +1082,7 @@ async def commands(ctx):
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
-    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles")
+    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme")
     embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
 
     embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)", inline=False)
