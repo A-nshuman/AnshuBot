@@ -1076,6 +1076,36 @@ async def meme(ctx):
             embed.set_image(url=res['data']['children'] [random.randint(0, 25)]['data']['url'])
             await ctx.send(embed=embed)
 
+@client.command(aliases=['corona', 'COVID'])
+async def covid(ctx, *, countryName):
+
+            url = f"https://coronavirus-19-api.herokuapp.com/countries/{countryName}"
+            stats = requests.get(url)
+            json_stats = stats.json()
+            country = json_stats["country"]
+            totalCases = json_stats["cases"]
+            todayCases = json_stats["todayCases"]
+            totalDeaths = json_stats["deaths"]
+            todayDeaths = json_stats["todayDeaths"]
+            recovered = json_stats["recovered"]
+            active = json_stats["active"]
+            critical = json_stats["critical"]
+            totalTests = json_stats["totalTests"]
+
+
+            embed2 = discord.Embed(title = f"**COVID 19 Status of {country}**", colour = discord.Colour.greyple(), timestamp = ctx.message.created_at)
+            embed2.add_field(name = "Total Cases", value = totalCases, inline = True)
+            embed2.add_field(name = "Today Cases", value = todayCases, inline = True)
+            embed2.add_field(name = "Active", value = active, inline = True)
+            embed2.add_field(name = "Total Deaths", value = totalDeaths, inline = True)
+            embed2.add_field(name = "Today Deaths", value = todayDeaths, inline = True)
+            embed2.add_field(name = "Recovered", value = recovered, inline = True)
+            embed2.add_field(name = "Critical", value = critical, inline = True)
+            embed2.add_field(name = "Total Tests", value = totalTests, inline = True)
+
+            embed2.set_thumbnail(url='https://images.newscientist.com/wp-content/uploads/2020/02/11165812/c0481846-wuhan_novel_coronavirus_illustration-spl.jpg')
+            await ctx.send(embed=embed2)
+
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
     embed = discord.Embed(
@@ -1096,10 +1126,10 @@ async def commands(ctx):
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
-    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme")
+    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme,covid")
     embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)", inline=False)
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)", inline=False)
 
     await ctx.send(embed=embed)
 
