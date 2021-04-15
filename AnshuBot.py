@@ -1107,9 +1107,10 @@ async def covid(ctx, *, countryName):
             embed2.set_thumbnail(url='https://images.newscientist.com/wp-content/uploads/2020/02/11165812/c0481846-wuhan_novel_coronavirus_illustration-spl.jpg')
             await ctx.send(embed=embed2)
 
-@client.command(aliases=['cmd', 'cmds'])
-async def commands(ctx):
-    
+
+@client.command()
+async def cmd(ctx):
+
     embed = discord.Embed(
     title = 'Help',
     description = 'Prefix .\nUse .commands/.cmds/.cmd to open this\nUse .about to know about the developer\nUse .info to know about the bot',
@@ -1133,8 +1134,15 @@ async def commands(ctx):
 
     embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)", inline=False)
 
-
-    await ctx.send(f'{ctx.author.mention} Pls check your DM for the commands')
-    await ctx.author.send(embed=embed)
+    await ctx.send("Please type ***__dm__*** if you want commands in DM or ***__here__*** if you want commands in here")
+    def check(message):
+        return message.author == ctx.author and message.channel == ctx.channel and message.content.lower() in ("dm", "here")
+    message = await client.wait_for("message", check=check)
+    choice = message.content.lower()
+    if choice == "dm":
+        await ctx.send(f'{ctx.author.mention} Please check your DM for the commands')
+        await ctx.author.send(embed=embed)
+    if choice == "here":
+        await ctx.send(embed=embed)
 
 client.run('ODI4NDk2ODg1NjQ3OTMzNDcx.YGqb2g.SFYkLd47BgUvUATVSaNyYZq7lzw')
