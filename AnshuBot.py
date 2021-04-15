@@ -1143,7 +1143,7 @@ async def cmd(ctx):
 
     embed = discord.Embed(
     title = 'Help',
-    description = 'Prefix .\nUse .commands/.cmds/.cmd to open this\nUse .about to know about the developer\nUse .info to know about the bot',
+    description = '**Prefix .\nUse .commands/.cmds/.cmd to open this\nUse .syntax to know how to use commands\nUse .about to know about the developer\nUse .info to know about the bot**',
     color = discord.Color.blue()
     )
 
@@ -1163,8 +1163,6 @@ async def cmd(ctx):
     embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
     embed.add_field(name = "Temperature Conversion", value = "cf,ck,fc,fk,kc,kf\ncf = Celcius to Fahrenheit\nck = Celcius to Kelvin\nfc = Fahrenheit to Celcius\nfk = Fahrenheit to Kelvin\nkc = Kelvin to Celcius\nkf = Kelvin to Fahrenheit")
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)\nFor temperature conversion commands syntx is .cf [tempertature]", inline=False)
-
     await ctx.send("Please type ***__dm__*** if you want commands in DM or ***__here__*** if you want commands in here")
     def check(message):
         return message.author == ctx.author and message.channel == ctx.channel and message.content.lower() in ("dm", "here")
@@ -1172,6 +1170,39 @@ async def cmd(ctx):
     choice = message.content.lower()
     if choice == "dm":
         await ctx.send(f'{ctx.author.mention} Please check your DM for the commands')
+        await ctx.author.send(embed=embed)
+    if choice == "here":
+        await ctx.send(embed=embed)
+
+@client.command()
+async def syntax(ctx):
+    embed = discord.Embed(title = "Syntax", colour = discord.Colour.dark_red(), timestamp = ctx.message.created_at)
+    embed.set_footer(text="Bot by MrAnshuman#1060")
+    embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
+    embed.add_field(name = "tell command", value = "Input = .tell Hello how are you?\nOutput = Hello how are you?",inline=False)
+    embed.add_field(name = "hi command", value = "Input = .hi Hello how are you?\nOutput = Hello\nhow\nare\nyou?",inline=False)
+    embed.add_field(name = "td command", value = "td stands for truth or dare, type .td and follow the instructions",inline=False)
+    embed.add_field(name = "Action commands", value = "Input = .hug [mention member]",inline=False)
+    embed.add_field(name = "Math commands", value = "Input = .add num1 num2",inline=False)
+    embed.add_field(name = "Greeting commands", value = "Input = .gm [mention member]",inline=False)
+    embed.add_field(name = "timer command", value = "Input = .timer [number of seconds]",inline=False)
+    embed.add_field(name = "reminder command", value = "Input = .reminder [number of seconds]",inline=False)
+    embed.add_field(name = "report command", value = "Input = .report [mention member] [reason for report]",inline=False)
+    embed.add_field(name = "dm command", value = "Input = .dm [mention member] [message]",inline=False)
+    embed.add_field(name = "dm_all command", value = "Input = .dm_all [message]",inline=False)
+    embed.add_field(name = "up command", value = "Input = .up [text in lower case]",inline=False)
+    embed.add_field(name = "low command", value = "Input = .low [text in UPPER CASE]",inline=False)
+    embed.add_field(name = "role command", value = "Input = .role [mention member]",inline=False)
+    embed.add_field(name = "covid command", value = "Input = .covid [country name]",inline=False)
+    embed.add_field(name = "temperature command", value = "Input = .cf [temperature u want to convert]",inline=False)
+
+    await ctx.send("Please type ***__dm__*** if you want commands in DM or ***__here__*** if you want commands in here")
+    def check(message):
+        return message.author == ctx.author and message.channel == ctx.channel and message.content.lower() in ("dm", "here")
+    message = await client.wait_for("message", check=check)
+    choice = message.content.lower()
+    if choice == "dm":
+        await ctx.send(f'{ctx.author.mention} Please check your DM for the syntax')
         await ctx.author.send(embed=embed)
     if choice == "here":
         await ctx.send(embed=embed)
