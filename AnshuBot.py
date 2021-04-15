@@ -1108,6 +1108,36 @@ async def covid(ctx, *, countryName):
             await ctx.send(embed=embed2)
 
 
+@client.command(aliases=['cf'])
+async def cel_fah(ctx, *, x:float):
+    solution = (9/5)*x + 32
+    await ctx.send(f"{solution} °F")
+
+@client.command(aliases=['ck'])
+async def cel_kel(ctx, *, x:float):
+    solution = x + 273.15
+    await ctx.send(f"{solution} K")
+
+@client.command(aliases=['fc'])
+async def fah_cel(ctx, *, x:float):
+    solution = (5/9)*(x-32)
+    await ctx.send(f"{solution} °C")
+
+@client.command(aliases=['fk'])
+async def fah_kel(ctx, *, x:float):
+    solution = (x + 459.67)*(5/9)
+    await ctx.send(f"{solution} K")
+
+@client.command(aliases=['kc'])
+async def kel_cel(ctx, *, x:float):
+    solution = x-273
+    await ctx.send(f"{solution} °C")
+
+@client.command(aliases=['kf'])
+async def kel_fah(ctx, *, x:float):
+    solution = x * (9/5) - 459.67
+    await ctx.send(f"{solution} °F")
+
 @client.command()
 async def cmd(ctx):
 
@@ -1131,8 +1161,9 @@ async def cmd(ctx):
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
     embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme,covid")
     embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
+    embed.add_field(name = "Temperature Conversion", value = "cf,ck,fc,fk,kc,kf\ncf = Celcius to Fahrenheit\nck = Celcius to Kelvin\nfc = Fahrenheit to Celcius\nfk = Fahrenheit to Kelvin\nkc = Kelvin to Celcius\nkf = Kelvin to Fahrenheit")
 
-    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)", inline=False)
+    embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)\nFor temperature conversion commands syntx is cf [tempertature]", inline=False)
 
     await ctx.send("Please type ***__dm__*** if you want commands in DM or ***__here__*** if you want commands in here")
     def check(message):
