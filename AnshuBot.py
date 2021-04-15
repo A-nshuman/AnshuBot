@@ -1109,10 +1109,11 @@ async def covid(ctx, *, countryName):
 
 @client.command(aliases=['cmd', 'cmds'])
 async def commands(ctx):
+    
     embed = discord.Embed(
-        title = 'Help',
-        description = 'Prefix .\nUse .commands/.cmds/.cmd to open this\nUse .about to know about the developer\nUse .info to know about the bot',
-        color = discord.Color.blue()
+    title = 'Help',
+    description = 'Prefix .\nUse .commands/.cmds/.cmd to open this\nUse .about to know about the developer\nUse .info to know about the bot',
+    color = discord.Color.blue()
     )
 
     embed.set_footer(text='Bot by MrAnshuman#1060')
@@ -1132,6 +1133,8 @@ async def commands(ctx):
 
     embed.add_field(name = "Syntax", value = "For tell and hi syntx is .hi (message), for .tell\n.td is for truth or dare\nFor all the action commands you have to mention member\nFor all math commands syntax is '.add 2 5'\nFor the greeting commands you have to mention user\nFor timer you have to specify how many seconds\nFor reminder you have to specify how many seconds and message to remind\nFor report syntax is .report @mention (reason)\nFor dm and dm_all syntax is .dm @mention (message), .dm_all (message)\nFor up command syntax is .up (message in lowercase)\nFor low command syntax is .low (message in uppercase)\nFor roles command syntx is .roles (mention member)\nFor covid command the syntax is .covid (country name)", inline=False)
 
-    await ctx.send(embed=embed)
+
+    await ctx.send(f'{ctx.author.mention} Pls check your DM for the commands')
+    await ctx.author.send(embed=embed)
 
 client.run('ODI4NDk2ODg1NjQ3OTMzNDcx.YGqb2g.SFYkLd47BgUvUATVSaNyYZq7lzw')
