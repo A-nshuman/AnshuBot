@@ -671,11 +671,6 @@ async def giveaway(ctx, *, prize : str):
     await ctx.send(f"Congrats {user1.mention} on winning **{prize}**")
 
 @client.command()
-async def spam(ctx, *,message):
-    while True:
-        await ctx.send(f'{message}')
-
-@client.command()
 async def cube(ctx):
     embed = discord.Embed(title = "Cube Formulae", colour = discord.Colour.blurple(), timestamp = ctx.message.created_at)
     embed.set_thumbnail(url="https://cdn-skill.splashmath.com/panel-uploads/GlossaryTerm/7017ed7b14c14daf85c7fd14d5d38291/1548234334_cube.png")
