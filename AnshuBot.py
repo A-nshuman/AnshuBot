@@ -1154,9 +1154,9 @@ async def cmd(ctx):
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
-    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme,covid")
-    embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=False)
+    embed.add_field(name = "General", value = "timer,reminder,report,dm,dm_all,snipe,up,low,roles,meme,covid", inline=False)
     embed.add_field(name = "Temperature Conversion", value = "cf,ck,fc,fk,kc,kf\ncf = Celcius to Fahrenheit\nck = Celcius to Kelvin\nfc = Fahrenheit to Celcius\nfk = Fahrenheit to Kelvin\nkc = Kelvin to Celcius\nkf = Kelvin to Fahrenheit")
+    embed.add_field(name = "Animal Facts", value = "dog,cat,panda,bird,fox,koala", inline=True)
 
     await ctx.send("Please type ***__dm__*** if you want commands in DM or ***__here__*** if you want commands in here")
     def check(message):
