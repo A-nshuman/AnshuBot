@@ -1133,6 +1133,12 @@ async def kel_fah(ctx, *, x:float):
     solution = x * (9/5) - 459.67
     await ctx.send(f"{solution} °F")
 
+@client.command(aliases=['mul_table', 't'])
+async def table(ctx, x:int):
+    for i in range(1,11):
+        sol = x*i
+        await ctx.send(f"{x} x {i} = {sol}")
+
 @client.command()
 async def cmd(ctx):
 
@@ -1150,7 +1156,7 @@ async def cmd(ctx):
     embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,temp,    define")
     embed.add_field(name = "Actions", value = "hug,kick,punch,pat,  stab,kidnap,slap,rr", inline=True)
     embed.add_field(name = "Valorant", value = "loadout, agent,(agnet)_info", inline=True)
-    embed.add_field(name = "Math", value = "add,sub,div,    multi,rando,(3D shape),trigno")
+    embed.add_field(name = "Math", value = "add,sub,div,    multi,rando,(3D shape),trigno,table")
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
@@ -1178,7 +1184,8 @@ async def syntax(ctx):
     embed.add_field(name = "hi command", value = "Input = .hi Hello how are you?\nOutput = Hello\nhow\nare\nyou?",inline=False)
     embed.add_field(name = "td command", value = "td stands for truth or dare, type .td and follow the instructions",inline=False)
     embed.add_field(name = "Action commands", value = "Input = .hug [mention member]",inline=False)
-    embed.add_field(name = "Math commands", value = "Input = .add num1 num2",inline=False)
+    embed.add_field(name = "Math operation commands", value = "Input = .add num1 num2",inline=False)
+    embed.add_field(name = "table command", value = "Input = .table [number]",inline=False)
     embed.add_field(name = "Greeting commands", value = "Input = .gm [mention member]",inline=False)
     embed.add_field(name = "timer command", value = "Input = .timer [number of seconds]",inline=False)
     embed.add_field(name = "reminder command", value = "Input = .reminder [number of seconds]",inline=False)
