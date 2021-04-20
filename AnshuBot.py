@@ -1180,7 +1180,7 @@ async def cmd(ctx):
     embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,temp,    define")
     embed.add_field(name = "Actions", value = "hug,kick,punch,pat,  stab,kidnap,slap,rr", inline=True)
     embed.add_field(name = "Valorant", value = "loadout, agent,(agnet)_info", inline=True)
-    embed.add_field(name = "Math", value = "add,sub,div,    multi,rando,(3D shape),trigno,table")
+    embed.add_field(name = "Math", value = "add,sub,div,    multi,rando,sqrt,(3D shape),trigno,table")
     embed.add_field(name = "Reactions", value = "yes,no")
     embed.add_field(name = "Greetings", value = "gm,ga,gn,gd")
     embed.add_field(name = "Physics", value = "reflection,      refraction,      ref_index")
