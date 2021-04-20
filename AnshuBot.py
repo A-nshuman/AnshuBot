@@ -1150,6 +1150,20 @@ async def spam(ctx, amount:int, *, message):
                 await ctx.send(message)
 
 @client.command()
+async def dspam(ctx, member: discord.Member, amount:int, *, message):
+    
+        if amount >= 16:
+            await ctx.send("I can only spam upto 15 messages in DM")
+
+        if amount <= 1:
+            await ctx.send(f"Sending {amount} message is not called spamming. Pls try again.")
+
+        else:
+            for i in range(amount):
+                await member.send(message)
+        await ctx.send(f"Spammed DM of {member.mention} {amount} times.")
+
+@client.command(aliases=['cmds','commands','command'])
 async def cmd(ctx):
 
     embed = discord.Embed(
@@ -1162,7 +1176,7 @@ async def cmd(ctx):
     embed.set_image(url='https://cdn.discordapp.com/attachments/828339543514021902/830516904183070730/Bot_pfp_2.jpg')
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
     embed.add_field(name = "Moderation", value = "kick_server,ban,    unban,delete")
-    embed.add_field(name = "Fun", value = "ping,toss,roll,   insult,hi,    scream,joke,  tell,td,spam")
+    embed.add_field(name = "Fun", value = "ping,toss,roll,   insult,hi,    scream,joke,  tell,td,spam,dspam")
     embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,temp,    define")
     embed.add_field(name = "Actions", value = "hug,kick,punch,pat,  stab,kidnap,slap,rr", inline=True)
     embed.add_field(name = "Valorant", value = "loadout, agent,(agnet)_info", inline=True)
@@ -1194,6 +1208,7 @@ async def syntax(ctx):
     embed.add_field(name = "hi command", value = "Input = .hi Hello how are you?\nOutput = Hello\nhow\nare\nyou?",inline=False)
     embed.add_field(name = "td command", value = "td stands for truth or dare, type .td and follow the instructions",inline=False)
     embed.add_field(name = "spam command", value = "Input = .spam [amount] [message]",inline=False)
+    embed.add_field(name = "dspam command", value = "Input = .dspam [mention member] [amount] [message]",inline=False)
     embed.add_field(name = "Action commands", value = "Input = .hug [mention member]",inline=False)
     embed.add_field(name = "Math operation commands", value = "Input = .add num1 num2",inline=False)
     embed.add_field(name = "table command", value = "Input = .table [number]",inline=False)
