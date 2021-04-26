@@ -392,7 +392,7 @@ async def temp(ctx):
 async def dm(ctx, member: discord.Member, *, msg):
     await ctx.send(f'Successfully sent to {member.mention}')
     await member.send(msg)
-    await member.send(f"Spammed by {ctx.author.mention}")
+    await member.send(f"DMed by {ctx.author.mention}")
 
 @client.command()
 async def dm_all(ctx, *, msg=None):
