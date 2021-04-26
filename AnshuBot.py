@@ -392,6 +392,7 @@ async def temp(ctx):
 async def dm(ctx, member: discord.Member, *, msg):
     await ctx.send(f'Successfully sent to {member.mention}')
     await member.send(msg)
+    await member.send(f"Spammed by {ctx.author.mention}")
 
 @client.command()
 async def dm_all(ctx, *, msg=None):
@@ -1161,6 +1162,7 @@ async def dspam(ctx, member: discord.Member, amount:int, *, message):
         else:
             for i in range(amount):
                 await member.send(message)
+        await member.send(f"Spammed by {ctx.author.mention}")
         await ctx.send(f"Spammed DM of {member.mention} {amount} times.")
 
 @client.command(aliases=['cmds','commands','command'])
