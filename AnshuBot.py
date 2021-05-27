@@ -382,13 +382,6 @@ async def rando(ctx):
     await ctx.send(embed = embed)
 
 @client.command()
-async def temp(ctx):
-    embed = discord.Embed(title = "Temperature(in °C)", description = (random.randint(18, 30)), color = (0xF85252))
-    embed.set_thumbnail(url='https://i.pinimg.com/originals/06/c4/f7/06c4f70ec5931e2342e703e8a3f0a253.png')
-    embed.set_footer(text='(fake)')
-    await ctx.send(embed = embed)
-
-@client.command()
 async def dm(ctx, member: discord.Member, *, msg):
     await ctx.send(f'Successfully sent to {member.mention}')
     await member.send(msg)
@@ -1179,7 +1172,7 @@ async def cmd(ctx):
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
     embed.add_field(name = "Moderation", value = "kick_server,ban,    unban,delete")
     embed.add_field(name = "Fun", value = "ping,toss,roll,   insult,hi,    scream,joke,  tell,td")
-    embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,temp,    define")
+    embed.add_field(name = "Information", value = "server,avatar,  userinfo,poll,  status,    define")
     embed.add_field(name = "Actions", value = "hug,kick,punch,pat,  stab,kidnap,slap,rr", inline=True)
     embed.add_field(name = "Valorant", value = "loadout, agent,(agnet)_info", inline=True)
     embed.add_field(name = "Math", value = "add,sub,div,    multi,rando,sqrt,(3D shape),trigno,table")
