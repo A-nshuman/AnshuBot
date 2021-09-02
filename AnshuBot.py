@@ -734,8 +734,8 @@ async def about(ctx):
     embed = discord.Embed(title = "About the developer", colour = discord.Colour.green(), timestamp = ctx.message.created_at)
     embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/702137359122169976/93c66338aa05a61f38d25dfcecd3a512.webp?size=1024")
     embed.add_field(name = "Name", value = "Anshuman Bhardwaj", inline=False)
-    embed.add_field(name = "Discord", value = "MrAnshuman #1060", inline=False)
-    embed.add_field(name = "Gmail", value = "abtbbruv@gmail.com", inline=False)
+    embed.add_field(name = "Discord", value = "MrAnshuman #2006", inline=False)
+    embed.add_field(name = "Support Mail", value = "mrbot1624@gmail.com", inline=False)
     embed.add_field(name = "Bot Server", value = "https://discord.gg/TtByRnt82F", inline=False)
 
     await ctx.send(embed=embed)
