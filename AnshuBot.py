@@ -167,19 +167,20 @@ async def agent(ctx):
             'https://static.wikia.nocookie.net/valorant_esports_gamepedia_en/images/7/75/Agent_Viper_Half.png/revision/latest?cb=20200810061230',
             'https://static.wikia.nocookie.net/valorant/images/b/b9/Skye_Keyart_final.png/revision/latest?cb=20201013182515',
             'https://static.wikia.nocookie.net/valorant/images/a/a1/Yoru2.png/revision/latest?cb=20210112180407',
-            'https://i2.wp.com/thegamehaus.com/wp-content/uploads/2021/01/Astra_KeyArt_Final.png?fit=779%2C1024&ssl=1']
+            'https://i2.wp.com/thegamehaus.com/wp-content/uploads/2021/01/Astra_KeyArt_Final.png?fit=779%2C1024&ssl=1'
+            'https://static.wikia.nocookie.net/valorant/images/a/a9/KAYO_artwork.png/revision/latest/scale-to-width-down/326?cb=20210622163116']
 
     embed = discord.Embed(title="Random Agent", colour=discord.Colour.blue(), timestamp=ctx.message.created_at)
     embed.set_image(url=f'{random.choice(agent)}')
     await ctx.send(embed=embed)
 
-@client.command()
+@client.command(aliases=['av'])
 async def avatar(ctx, *, member: discord.Member):
 
     embed = discord.Embed(colour=member.colour, timestamp=ctx.message.created_at)
     embed.set_author(name=f"Avatar of {member}")
     embed.set_image(url=member.avatar_url)
-    
+
     await ctx.send(embed=embed)
 
 @client.command()
@@ -427,7 +428,7 @@ async def jett_info(ctx):
     embed.add_field(name = "Tailwind(E)", value = "Cost = Free\nDash range = 15m", inline=False)
     embed.add_field(name = "Updraft(Q)", value = "Cost = 100\nVertical range = 5m", inline=False)
     embed.add_field(name = "Cloudburst(C)", value = "Cost = 100\n Duration = 7s", inline=False)
-    embed.add_field(name = "Blade Storm(X)", value = "Cost = 6 kills\nDamage = 50\nKnives = 5(refreshes on kill)", inline=False)
+    embed.add_field(name = "Blade Storm(X)", value = "Cost = 7 kills\nDamage = 50\nKnives = 5(refreshes on kill with left click)", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -492,7 +493,7 @@ async def cypher_info(ctx):
     embed.add_field(name = "Spycam(E)", value = "Cost = Free\nCooldown for dart = 6s\nEffect = Pings enemy location every 2s", inline=False)
     embed.add_field(name = "Cyber Cage(Q)", value = "Cost = 100\nDuration = 7s\nStealth delay = 1.4s", inline=False)
     embed.add_field(name = "Trapwire(C)", value = "Cost = 200\nReveal duration = 3s\nDaze duration = 3s\nDamage = 5", inline=False)
-    embed.add_field(name = "Neural Theft(X)", value = "Cost = 7 kills\nCast range = 12m\nUpload time = 2s\nFresh corpse duration = 20s", inline=False)
+    embed.add_field(name = "Neural Theft(X)", value = "Cost = 6 kills\nCast range = 12m\nUpload time = 2s\nFresh corpse duration = 20s", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -531,7 +532,7 @@ async def raze_info(ctx):
     embed.add_field(name = "Paint Shells(E)", value = "Cost = Free\nDamage = 55\nFuse time = 2s", inline=False)
     embed.add_field(name = "Blast Pack(Q)", value = "Cost = 200\nDamage = 50\nDuration = 5s,\nMax damage range = 1m", inline=False)
     embed.add_field(name = "Boom Bot(C)", value = "Cost = 200\nDamage = 125\nDuration = 10s\nHealth = 100 HP", inline=False)
-    embed.add_field(name = "Showstopper(X)", value = "Cost = 7 kills\nDamage = 150\nDuration = 10s\nEquip time = 1.4s", inline=False)
+    embed.add_field(name = "Showstopper(X)", value = "Cost = 8 kills\nDamage = 150\nDuration = 10s\nEquip time = 1.4s", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -557,7 +558,7 @@ async def sage_info(ctx):
     embed.add_field(name = "Heal Orb(E)", value = "Cost = Free\nDuration = 5s\nHeal speed = 12 HP/s\nHeal pause on hit = 2s\nHeal amount = 60 HP", inline=False)
     embed.add_field(name = "Slow Orb(Q)", value = "Cost = 100\nDuration = 7s\nMovement slow = 50%\nJump height reduction = 30%", inline=False)
     embed.add_field(name = "Barrier Orb(C)", value = "Cost = 300\nDuration = 30s\nHealth = 800HP per segment", inline=False)
-    embed.add_field(name = "Resurrection(X)", value = "Cost = 7 kills\nInvulnerability duration = 2s", inline=False)
+    embed.add_field(name = "Resurrection(X)", value = "Cost = 8 kills\nInvulnerability duration = 2s", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -570,7 +571,7 @@ async def skye_info(ctx):
     embed.add_field(name = "Guiding Light(E)", value = "Cost = 100\nFlash duration = 1s - 3s\nFlight duration = 2.5s\nHealth = 60", inline=False)
     embed.add_field(name = "Trailblazer(Q)", value = "Cost = 200\nDuration = 6s\nDamage = 30\nEffect = 3s Daze on hit\nHealth = 100 HP", inline=False)
     embed.add_field(name = "Regrowth(C)", value = "Cost = 200\nTotal heal amount = 100\nHeal speed = 20 HP/s\nRadius = 1000", inline=False)
-    embed.add_field(name = "Seekers(X)", value = "Cost = 6 kills\nNearsight duration = 3s\nHP = 150\nSearch duration = 15s", inline=False)
+    embed.add_field(name = "Seekers(X)", value = "Cost = 7 kills\nNearsight duration = 3s\nHP = 150\nSearch duration = 15s", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -583,7 +584,7 @@ async def sova_info(ctx):
     embed.add_field(name = "Recon Bolt(E)", value = "Cost = Free\nDuration = 5.625s\nReveal duration = 3s", inline=False)
     embed.add_field(name = "Shock Bolt(Q)", value = "Cost = 100\nDamage = 10-90", inline=False)
     embed.add_field(name = "Owl Drone(C)", value = "Cost = 300\nDuration = 10s\nHealth = 120 HP\nDart cooldown = 5s", inline=False)
-    embed.add_field(name = "Hunter's Fury(X)", value = "Cost = 7 kills\nDamage = 80\nRange = 66m\nDuration = 6.5s", inline=False)
+    embed.add_field(name = "Hunter's Fury(X)", value = "Cost = 8 kills\nDamage = 80\nRange = 66m\nDuration = 6.5s", inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -1207,7 +1208,7 @@ async def syntax(ctx):
     embed.add_field(name = "table command", value = "Input = .table [number]",inline=False)
     embed.add_field(name = "Greeting commands", value = "Input = .gm [mention member]",inline=False)
     embed.add_field(name = "timer command", value = "Input = .timer [number of seconds]",inline=False)
-    embed.add_field(name = "reminder command", value = "Input = .reminder [number of seconds]",inline=False)
+    embed.add_field(name = "reminder command", value = "Input = .reminder [number of seconds] [note]",inline=False)
     embed.add_field(name = "report command", value = "Input = .report [mention member] [reason for report]",inline=False)
     embed.add_field(name = "dm command", value = "Input = .dm [mention member] [message]",inline=False)
     embed.add_field(name = "dm_all command", value = "Input = .dm_all [message]",inline=False)
