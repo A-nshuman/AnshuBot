@@ -381,24 +381,6 @@ async def rando(ctx):
     embed = discord.Embed(title = "Random Number", description = (random.randint(1, 101)), color = (0xF85252))
     embed.set_thumbnail(url='https://i.pinimg.com/originals/24/96/3b/24963bfad3386b063b9b0bcc5b42b089.jpg')
     await ctx.send(embed = embed)
-
-@client.command()
-async def dm(ctx, member: discord.Member, *, msg):
-    await ctx.send(f'Successfully sent to {member.mention}')
-    await member.send(msg)
-    await member.send(f"DMed by {ctx.author.mention}")
-
-@client.command()
-async def dm_all(ctx, *, msg=None):
-    if msg != None:
-        members = ctx.guild.members
-        for member in members:
-            try:
-                await member.send(msg)
-            except:
-                print("")
-    else:
-        await ctx.send("Syntax = .dm_all (message)")
     
 @client.command()
 async def define(ctx, *, sth):
