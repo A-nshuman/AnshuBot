@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands import Bot, is_owner
 from random import choice
 import math
 from math import *
@@ -32,7 +33,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f'{member} has left the server.')
 
-@client.event
+@client.event   
 async def on_message_delete(message):
     client.sniped_message[message.guild.id] = (message.content, message.author, message.channel.name, message.created_at)
 
@@ -56,15 +57,18 @@ async def ping(ctx):
     await ctx.send(f'**Pong!** {round(client.latency * 1000)}ms')
 
 @client.command(aliases=['del'])
+@is_owner
 async def delete(ctx, amount=1):
     await ctx.channel.purge(limit=amount)
 
 @client.command()
+@is_owner
 async def kick_server(ctx, member : discord.Member):
     await member.kick()
     await ctx.send(f'Kicked {member.mention}')
 
 @client.command()
+@is_owner
 async def ban(ctx, member : discord.Member):
     await member.ban()
     await ctx.send(f'Banned {member.mention}')
@@ -94,6 +98,7 @@ async def server(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
+@is_owner
 async def unban(ctx, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
@@ -175,13 +180,16 @@ async def agent(ctx):
     await ctx.send(embed=embed)
 
 @client.command(aliases=['av'])
-async def avatar(ctx, *, member: discord.Member):
+async def avatar(ctx, member : discord.Member = None):
+    if member == None:
+        member = ctx.author
 
-    embed = discord.Embed(colour=member.colour, timestamp=ctx.message.created_at)
-    embed.set_author(name=f"Avatar of {member}")
-    embed.set_image(url=member.avatar_url)
+    memberAvatar = member.avatar_url
 
-    await ctx.send(embed=embed)
+    avaEmbed = discord.Embed(title = f"{member.name}'s Avatar", colour=member.colour, timestamp=ctx.message.created_at)
+    avaEmbed.set_image(url = memberAvatar)
+
+    await ctx.send(embed = avaEmbed)
 
 @client.command()
 async def insult(ctx, *, member: discord.Member=None):
@@ -381,6 +389,24 @@ async def rando(ctx):
     embed = discord.Embed(title = "Random Number", description = (random.randint(1, 101)), color = (0xF85252))
     embed.set_thumbnail(url='https://i.pinimg.com/originals/24/96/3b/24963bfad3386b063b9b0bcc5b42b089.jpg')
     await ctx.send(embed = embed)
+
+@client.command()
+async def dm(ctx, member: discord.Member, *, msg):
+    await ctx.send(f'Successfully sent to {member.mention}')
+    await member.send(msg)
+    await member.send(f"DMed by {ctx.author.mention}")
+
+@client.command()
+async def dm_all(ctx, *, msg=None):
+    if msg != None:
+        members = ctx.guild.members
+        for member in members:
+            try:
+                await member.send(msg)
+            except:
+                print("")
+    else:
+        await ctx.send("Syntax = .dm_all (message)")
     
 @client.command()
 async def define(ctx, *, sth):
@@ -1116,31 +1142,6 @@ async def table(ctx, x:int):
         sol = x*i
         await ctx.send(f"{x} x {i} = {sol}")
 
-@client.command(name='spam', help='Spams the input message for x number of times')
-async def spam(ctx, amount:int, *, message):
-
-        if amount >= 15:
-            await ctx.send("I can't spam more than 15 messages")
-
-        else:
-            for i in range(amount):
-                await ctx.send(message)
-
-@client.command()
-async def dspam(ctx, member: discord.Member, amount:int, *, message):
-    
-        if amount >= 16:
-            await ctx.send("I can only spam upto 15 messages in DM")
-
-        if amount <= 1:
-            await ctx.send(f"Sending {amount} message is not called spamming. Pls try again.")
-
-        else:
-            for i in range(amount):
-                await member.send(message)
-        await member.send(f"Spammed by {ctx.author.mention}")
-        await ctx.send(f"Spammed DM of {member.mention} {amount} times.")
-
 @client.command(aliases=['cmds','commands','command'])
 async def cmd(ctx):
 
@@ -1150,7 +1151,7 @@ async def cmd(ctx):
     color = discord.Color.blue()
     )
 
-    embed.set_footer(text='Bot by MrAnshuman#1060')
+    embed.set_footer(text='Bot by MrAnshuman#1457')
     embed.set_image(url='https://cdn.discordapp.com/attachments/828339543514021902/830516904183070730/Bot_pfp_2.jpg')
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
     embed.add_field(name = "Moderation", value = "kick_server,ban,    unban,delete")
@@ -1180,7 +1181,7 @@ async def cmd(ctx):
 @client.command()
 async def syntax(ctx):
     embed = discord.Embed(title = "Syntax", colour = discord.Colour.dark_red(), timestamp = ctx.message.created_at)
-    embed.set_footer(text="Bot by MrAnshuman#1060")
+    embed.set_footer(text="Bot by MrAnshuman#1457")
     embed.set_thumbnail(url='https://cdn.discordapp.com/avatars/828496885647933471/6ee0758c3b9c229ffd3fd18e07991a40.webp?size=1024')
     embed.add_field(name = "tell command", value = "Input = .tell Hello how are you?\nOutput = Hello how are you?",inline=False)
     embed.add_field(name = "hi command", value = "Input = .hi Hello how are you?\nOutput = Hello\nhow\nare\nyou?",inline=False)
