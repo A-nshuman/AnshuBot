@@ -57,18 +57,18 @@ async def ping(ctx):
     await ctx.send(f'**Pong!** {round(client.latency * 1000)}ms')
 
 @client.command(aliases=['del'])
-@is_owner
+@is_owner()
 async def delete(ctx, amount=1):
     await ctx.channel.purge(limit=amount)
 
 @client.command()
-@is_owner
+@is_owner()
 async def kick_server(ctx, member : discord.Member):
     await member.kick()
     await ctx.send(f'Kicked {member.mention}')
 
 @client.command()
-@is_owner
+@is_owner()
 async def ban(ctx, member : discord.Member):
     await member.ban()
     await ctx.send(f'Banned {member.mention}')
@@ -98,7 +98,7 @@ async def server(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
-@is_owner
+@is_owner()
 async def unban(ctx, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
