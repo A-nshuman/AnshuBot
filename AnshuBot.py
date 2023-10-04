@@ -1212,4 +1212,4 @@ async def syntax(ctx):
     if choice == "here":
         await ctx.send(embed=embed)
 
-client.run('ODI4NDk2ODg1NjQ3OTMzNDcx.YGqb2g.SFYkLd47BgUvUATVSaNyYZq7lzw')
+client.run('')
